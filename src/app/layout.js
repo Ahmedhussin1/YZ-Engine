@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "YZ Engine",
-  description: "Future of search engines",
+  description: "Future of search engines is now here",
 };
 
 export default function RootLayout({ children }) {
