@@ -1,10 +1,12 @@
 // pages/randomSong.js
-'use client'
+"use client";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const RandomSong = () => {
   const [song, setSong] = useState("");
+  const [cover, setCover] = useState("");
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
@@ -17,6 +19,7 @@ const RandomSong = () => {
         }
         const data = await response.json();
         setSong(data.song);
+        setCover(data.cover);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching random song:", error);
@@ -33,6 +36,7 @@ const RandomSong = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <h1 className="text-3xl font-bold mb-4">Random Song</h1>
+      <Image src={cover} width={200} height={200} alt="cover image" />
       <p className="text-xl">{song}</p>
       <button
         onClick={() => router.push("/")}

@@ -29,8 +29,9 @@ export default async function handler(req, res) {
 
     const data = await response.json();
     const song = data.response.song;
+    // const cover = data.response.cover
 
-    res.status(200).json({ song: song.title });
+    res.status(200).json({ song: song.title, cover: song.song_art_image_url });
   } catch (error) {
     console.error("Error fetching random song:", error);
     res.status(500).json({ error: "Failed to fetch random song" });
