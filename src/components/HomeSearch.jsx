@@ -42,7 +42,7 @@ function HomeSearch() {
         </button>
         {/* this button will search an random song name */}
         <button
-          className="bg-[#f8f9fa] rounded-md text-sm text-gray-800 hover:ring-gray-200 focus:outline-none active:ring-gray-300 hover-shadow-md w-36 h-10 transition-shadow"
+          className="bg-[#f8f9fa] rounded-md text-sm text-gray-800 hover:ring-gray-200 focus:outline-none active:ring-gray-300 hover-shadow-md w-40 h-10 transition-shadow"
           onClick={randomSearch}
         >
           LET YZ DO IT FOR ME
