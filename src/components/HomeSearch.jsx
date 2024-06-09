@@ -5,6 +5,7 @@ import { BsFillMicFill } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 function HomeSearch() {
   const [input, setInput] = useState("");
+  const [randomSongSearchLoading, setRandomSongSearchLoading] = useState(false)
   const router = useRouter();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,14 +15,15 @@ function HomeSearch() {
   // fetch an random song name from genius api
 
     const  randomSearch = async (e) => {
+      setRandomSongSearchLoading(true);
       try {
         const response = await fetch("/api/randomSong");
         if (!response.ok) {
           throw new Error("Failed to fetch random song");
         }
         const data = await response.json();
-        console.log(data.song);
         router.push(`search/web?searchTerm=${data.song}`)
+        setRandomSongSearchLoading(false);
       } catch (error) {
         console.error("Error fetching random song:", error);
       }
@@ -51,10 +53,11 @@ function HomeSearch() {
         </button>
         {/* this button will search an random song name */}
         <button
+        disabled={randomSongSearchLoading}
           className="bg-[#f8f9fa] rounded-md text-sm text-gray-800 hover:ring-gray-200 focus:outline-none active:ring-gray-300 hover-shadow-md w-40 h-10 transition-shadow"
           onClick={randomSearch}
         >
-          LET YZ DO IT FOR ME
+          {randomSongSearchLoading ? <div>Loading...</div> : "LET YZ DO IT FOR ME"}
         </button>
       </div>
     </>
