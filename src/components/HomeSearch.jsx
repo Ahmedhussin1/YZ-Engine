@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsFillMicFill } from "react-icons/bs";
 import { useRouter } from "next/navigation";
@@ -12,10 +12,19 @@ function HomeSearch() {
     router.push(`search/web?searchTerm=${input}`);
   };
   // fetch an random song name from genius api
-  
-    const randomSearch = (e) => {
-      e.preventDefault();
-      router.push("/randomSong");
+
+    const  randomSearch = async (e) => {
+      try {
+        const response = await fetch("/api/randomSong");
+        if (!response.ok) {
+          throw new Error("Failed to fetch random song");
+        }
+        const data = await response.json();
+        console.log(data.song);
+        router.push(`search/web?searchTerm=${data.song}`)
+      } catch (error) {
+        console.error("Error fetching random song:", error);
+      }
     };
   return (
     <>

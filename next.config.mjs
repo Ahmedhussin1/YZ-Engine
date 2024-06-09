@@ -13,6 +13,7 @@ const nextConfig = {
         pathname: "**",
       },
     ],
+    domains: ["assets.genius.com"],
   },
 };
 
